@@ -1,29 +1,36 @@
 spring:
-  datasource:
-    url: ${DB_URL:jdbc:mysql://prod-db-server:3306/medibridge_lab_prod?useSSL=true&serverTimezone=UTC&createDatabaseIfNotExist=true}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      maximum-pool-size: 15
-      minimum-idle: 5
-      connection-timeout: 30000
+  config:
+    activate:
+      on-profile: prod
+
+  # Redis Configuration
+  data:
+    redis:
+      url: ${REDIS_URL:redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415}
+
+  # Kafka Configuration
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:shortline.proxy.rlwy.net:57987}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+    consumer:
+      group-id: ${spring.application.name}-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      properties:
+        spring.json.trusted.packages: "*"
+
   jpa:
+    show-sql: false
     hibernate:
       ddl-auto: validate
-    show-sql: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-  mail:
-    host: ${MAIL_HOST}
-    port: ${MAIL_PORT:587}
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
 
 logging:
   level:
     root: WARN
-    com.medibridge: INFO
-  file:
-    name: /var/log/medibridge/lab-service.log
+    com.medibridge.lab_service_medibridge: INFO

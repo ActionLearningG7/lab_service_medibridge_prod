@@ -1,0 +1,69 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< com.medibridge:lab_service_medibridge >----------------
+[INFO] Building lab_service_medibridge 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.0:clean (default-clean) @ lab_service_medibridge ---
+[INFO] Deleting D:\medibridgeProd\lab_service_medibridge\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ lab_service_medibridge ---
+[INFO] Copying 5 resources from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ lab_service_medibridge ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 86 source files with javac [debug release 21] to target\classes
+[INFO] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/infrastructure/storage/impl/CloudinaryReportStorageClient.java: D:\medibridgeProd\lab_service_medibridge\src\main\java\com\medibridge\lab_service_medibridge\infrastructure\storage\impl\CloudinaryReportStorageClient.java uses unchecked or unsafe operations.
+[INFO] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/infrastructure/storage/impl/CloudinaryReportStorageClient.java: Recompile with -Xlint:unchecked for details.
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING : 
+[INFO] -------------------------------------------------------------
+[WARNING] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/domain/model/SampleCollectionRequest.java:[49,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/web/mapper/LabTestMapper.java:[11,20] Unmapped target property: "id".
+[INFO] 2 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/service/LabOrderService.java:[82,48] cannot find symbol
+  symbol:   variable PENDING
+  location: class com.medibridge.lab_service_medibridge.domain.enums.CollectionTaskStatus
+[ERROR] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/service/LabOrderService.java:[109,58] cannot find symbol
+  symbol:   variable COLLECTED
+  location: class com.medibridge.lab_service_medibridge.domain.enums.LabOrderStatus
+[ERROR] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/service/CollectionService.java:[49,44] cannot find symbol
+  symbol:   variable COLLECTED
+  location: class com.medibridge.lab_service_medibridge.domain.enums.CollectionTaskStatus
+[ERROR] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/service/CollectionService.java:[55,39] cannot find symbol
+  symbol:   variable COLLECTED
+  location: class com.medibridge.lab_service_medibridge.domain.enums.LabOrderStatus
+[INFO] 4 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.482 s
+[INFO] Finished at: 2026-01-25T12:38:53+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project lab_service_medibridge: Compilation failure: Compilation failure: 
+[ERROR] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/service/LabOrderService.java:[82,48] cannot find symbol
+[ERROR]   symbol:   variable PENDING
+[ERROR]   location: class com.medibridge.lab_service_medibridge.domain.enums.CollectionTaskStatus
+[ERROR] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/service/LabOrderService.java:[109,58] cannot find symbol
+[ERROR]   symbol:   variable COLLECTED
+[ERROR]   location: class com.medibridge.lab_service_medibridge.domain.enums.LabOrderStatus
+[ERROR] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/service/CollectionService.java:[49,44] cannot find symbol
+[ERROR]   symbol:   variable COLLECTED
+[ERROR]   location: class com.medibridge.lab_service_medibridge.domain.enums.CollectionTaskStatus
+[ERROR] /D:/medibridgeProd/lab_service_medibridge/src/main/java/com/medibridge/lab_service_medibridge/service/CollectionService.java:[55,39] cannot find symbol
+[ERROR]   symbol:   variable COLLECTED
+[ERROR]   location: class com.medibridge.lab_service_medibridge.domain.enums.LabOrderStatus
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
