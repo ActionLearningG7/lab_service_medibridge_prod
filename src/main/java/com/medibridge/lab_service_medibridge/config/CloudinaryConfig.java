@@ -84,9 +84,9 @@ public class CloudinaryConfig {
     public Cloudinary cloudinaryProd() {
         log.info("Initializing Cloudinary for PRODUCTION profile");
 
-        String cloudName = System.getenv("CLOUDINARY_CLOUD_NAME");
-        String apiKey = System.getenv("CLOUDINARY_API_KEY");
-        String apiSecret = System.getenv("CLOUDINARY_API_SECRET");
+        String cloudName = "du1pyzthl";
+        String apiKey = "451954261338871";
+        String apiSecret = "vL9wmoZn8Yid40FtSS1irqtT3N8";
 
         // Fail fast in production if credentials missing
         if (cloudName == null || cloudName.isBlank()) {
