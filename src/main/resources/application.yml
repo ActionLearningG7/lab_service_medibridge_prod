@@ -3,24 +3,24 @@ spring:
     name: lab-service
   
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE:dev}
+    active: prod
 
-  datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:medibridge_lab}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:secret}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      pool-name: LabServiceHikariPool
-      maximum-pool-size: 20
-      minimum-idle: 5
-      connection-timeout: 30000
-      idle-timeout: 600000
+#  datasource:
+#    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:medibridge_lab}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+#    username: ${DB_USER:root}
+#    password: ${DB_PASSWORD:secret}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      pool-name: LabServiceHikariPool
+#      maximum-pool-size: 20
+#      minimum-idle: 5
+#      connection-timeout: 30000
+#      idle-timeout: 600000
 
   # Redis Configuration
   data:
     redis:
-      url: ${REDIS_URL:redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415}
+      url: redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415
 
   jpa:
     open-in-view: false
@@ -35,7 +35,7 @@ spring:
 
   # Kafka Configuration
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:shortline.proxy.rlwy.net:57987}
+    bootstrap-servers: shortline.proxy.rlwy.net:57987
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -58,26 +58,26 @@ spring:
 
 # Cloudinary
 cloudinary:
-  cloud-name: ${CLOUDINARY_CLOUD_NAME:}
-  api-key: ${CLOUDINARY_API_KEY:}
-  api-secret: ${CLOUDINARY_API_SECRET:}
-  folder: ${CLOUDINARY_FOLDER:medibridge/lab-reports}
+  cloud-name: du1pyzthl
+  api-key: 451954261338871
+  api-secret: vL9wmoZn8Yid40FtSS1irqtT3N8
+  folder: medibridge/lab-reports
   secure: true
 
 # Security (JWT Resource Server)
 security:
   jwt:
-    secret-key: ${JWT_SECRET:MediBridge2026!Pr0duct1on$ecretK3y#H0sp1talManag3m3ntSyst3m@Secur1ty}
+    secret-key: MediBridge2026!Pr0duct1on$ecretK3y#H0sp1talManag3m3ntSyst3m@Secur1ty
 
 # Server
 server:
-  port: ${SERVER_PORT:8085}
+  port: 8085
 
 # Discovery
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+      defaultZone: https://servermedibridgeprod-production.up.railway.app/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
@@ -102,5 +102,5 @@ management:
 
 logging:
   level:
-    root: ${LOG_LEVEL:INFO}
-    com.medibridge: ${LOG_LEVEL:INFO}
+    root: INFO
+    com.medibridge: INFO

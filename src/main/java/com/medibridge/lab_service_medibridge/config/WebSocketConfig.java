@@ -28,7 +28,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // WebSocket endpoint
         registry.addEndpoint("/ws-lab")
-                .setAllowedOrigins("http://localhost:3000")
+                .setAllowedOrigins("http://localhost:3000","https://medibridge-prod.vercel.app/")
                 .withSockJS()
                 .setHeartbeatTime(45000) // Server heartbeat every 45 seconds
                 .setDisconnectDelay(10000) // Wait 10s before disconnecting idle sessions

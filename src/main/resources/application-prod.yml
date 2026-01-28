@@ -1,16 +1,26 @@
 spring:
-  config:
-    activate:
-      on-profile: prod
+  datasource:
+    url: jdbc:mysql://mysql.railway.internal:3306/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: diFcUjHloMRrPoCGoCbkDpeevwIVtJjQ
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
 
   # Redis Configuration
   data:
     redis:
-      url: ${REDIS_URL:redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415}
+      url: redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415
 
   # Kafka Configuration
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:shortline.proxy.rlwy.net:57987}
+    bootstrap-servers: shortline.proxy.rlwy.net:57987
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -25,12 +35,15 @@ spring:
       properties:
         spring.json.trusted.packages: "*"
 
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: validate
+
+
+  devtools:
+    restart:
+      enabled: true
 
 logging:
   level:
-    root: WARN
-    com.medibridge.lab_service_medibridge: INFO
+    root: INFO
+    com.medibridge.lab_service_medibridge: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.springframework.web.socket: DEBUG
