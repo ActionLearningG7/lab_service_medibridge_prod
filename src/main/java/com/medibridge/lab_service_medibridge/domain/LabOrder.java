@@ -95,6 +95,12 @@ public class LabOrder {
     @Version
     private Long version;
 
+    @Column(name = "invoice_id", length = 50)
+    private String invoiceId;
+
+    @Column(name = "payment_status", length = 20)
+    private String paymentStatus; // e.g., PENDING, PAID, FAILED
+
     public void addItem(LabOrderItem item) {
         items.add(item);
         item.setLabOrder(this);

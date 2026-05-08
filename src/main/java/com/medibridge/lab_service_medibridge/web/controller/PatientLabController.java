@@ -43,8 +43,7 @@ public class PatientLabController {
             patientId = "test-patient-" + System.currentTimeMillis();
         }
 
-        LabOrder order = orderService.createOrder(request, patientId, false);
-        return ResponseEntity.ok(mapper.toResponse(order));
+        return ResponseEntity.ok(orderService.createOrder(request, patientId, false));
     }
 
     @GetMapping("/me")

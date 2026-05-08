@@ -29,4 +29,7 @@ public class LabOrderResponse {
     private LocalDateTime createdAt;
 
     private List<LabResultResponse> results;
+    private boolean paymentRequired;
+    private String invoiceId;
+    private String checkoutUrl;
 }

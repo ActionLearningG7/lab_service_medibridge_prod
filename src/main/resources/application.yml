@@ -3,19 +3,8 @@ spring:
     name: lab-service
   
   profiles:
-    active: prod
+    active: dev
 
-#  datasource:
-#    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:medibridge_lab}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-#    username: ${DB_USER:root}
-#    password: ${DB_PASSWORD:secret}
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    hikari:
-#      pool-name: LabServiceHikariPool
-#      maximum-pool-size: 20
-#      minimum-idle: 5
-#      connection-timeout: 30000
-#      idle-timeout: 600000
 
   # Redis Configuration
   data:
@@ -73,15 +62,7 @@ security:
 server:
   port: 8085
 
-# Discovery
-eureka:
-  client:
-    service-url:
-      defaultZone: https://servermedibridgeprod-production.up.railway.app/eureka/
-    register-with-eureka: true
-    fetch-registry: true
-  instance:
-    prefer-ip-address: true
+
 
 # Actuator
 management:

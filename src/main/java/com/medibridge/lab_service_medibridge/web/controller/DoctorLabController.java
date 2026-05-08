@@ -43,8 +43,7 @@ public class DoctorLabController {
             return ResponseEntity.badRequest().build();
         }
 
-        LabOrder order = orderService.createOrder(request, doctorId, true);
-        return ResponseEntity.ok(mapper.toResponse(order));
+        return ResponseEntity.ok(orderService.createOrder(request, doctorId, true));
     }
 
     /**

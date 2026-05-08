@@ -113,8 +113,15 @@ public class AdminLabController {
 
     @GetMapping("/orders")
     @PreAuthorize("permitAll()")
-    public ResponseEntity<Page<LabOrderResponse>> getAllOrders(Pageable pageable) {
-        Page<LabOrder> page = orderRepository.findAll(pageable);
+    public ResponseEntity<Page<LabOrderResponse>> getAllOrders(
+            @RequestParam(required = false) boolean eligibleOnly,
+            Pageable pageable) {
+        Page<LabOrder> page;
+        if (eligibleOnly) {
+            page = orderRepository.findEligibleForTaskCreation(pageable);
+        } else {
+            page = orderRepository.findAll(pageable);
+        }
         return ResponseEntity.ok(page.map(mapper::toResponse));
     }
 
@@ -122,7 +129,7 @@ public class AdminLabController {
      * POST /api/v1/admin/lab/orders/{orderId}/create-collection-task
      * Create a collection task from a lab order and assign to phlebotomist
      *
-     * @param orderId Lab order UUID
+     * @param orderId        Lab order UUID
      * @param phlebotomistId Phlebotomist user ID
      * @return Created CollectionTask details
      */
@@ -136,15 +143,7 @@ public class AdminLabController {
         LabOrder order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new EntityNotFoundException("Lab order not found: " + orderId));
 
-        // Check if task already exists
-        if (taskRepository.findByLabOrderId(orderId).isPresent()) {
-            return ResponseEntity.badRequest().body(Map.of(
-                "error", "Collection task already exists for this order",
-                "orderId", orderId
-            ));
-        }
-
-        // Create the collection task
+        // Ensure a task exists (idempotent)
         taskService.createTaskFromOrder(order);
 
         // Get the created task
@@ -157,11 +156,10 @@ public class AdminLabController {
                 order.getSpecialInstructions(), adminId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
-            "message", "Collection task created and assigned successfully",
-            "taskId", task.getId(),
-            "orderId", orderId,
-            "phlebotomistId", phlebotomistId,
-            "status", "ASSIGNED"
-        ));
+                "message", "Collection task created and assigned successfully",
+                "taskId", task.getId(),
+                "orderId", orderId,
+                "phlebotomistId", phlebotomistId,
+                "status", "ASSIGNED"));
     }
 }

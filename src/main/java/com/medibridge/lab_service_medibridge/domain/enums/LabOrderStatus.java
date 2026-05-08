@@ -2,6 +2,7 @@ package com.medibridge.lab_service_medibridge.domain.enums;
 
 public enum LabOrderStatus {
     CREATED,
+    PAYMENT_PENDING,
     CONFIRMED,
     SCHEDULED,
     ASSIGNED, // Optional visibility

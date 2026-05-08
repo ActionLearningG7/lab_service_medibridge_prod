@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication
+import org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration;
+
+@SpringBootApplication(exclude = { OAuth2ResourceServerAutoConfiguration.class })
 @EnableFeignClients
 public class LabServiceMedibridgeApplication {
 

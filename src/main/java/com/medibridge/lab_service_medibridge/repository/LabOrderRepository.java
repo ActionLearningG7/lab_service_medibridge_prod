@@ -20,4 +20,7 @@ public interface LabOrderRepository extends JpaRepository<LabOrder, UUID>, JpaSp
     Page<LabOrder> findByDoctorId(String doctorId, Pageable pageable);
 
     java.util.List<LabOrder> findByPatientId(String patientId);
+
+    @org.springframework.data.jpa.repository.Query("SELECT o FROM LabOrder o WHERE o.status = 'SCHEDULED' AND o.id NOT IN (SELECT t.labOrderId FROM CollectionTask t)")
+    Page<LabOrder> findEligibleForTaskCreation(Pageable pageable);
 }

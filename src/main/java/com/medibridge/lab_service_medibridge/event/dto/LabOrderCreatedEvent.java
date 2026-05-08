@@ -14,4 +14,5 @@ public class LabOrderCreatedEvent {
     private String doctorId;
     private CollectionType collectionType;
     private LocalDateTime createdAt;
+    private String status;
 }

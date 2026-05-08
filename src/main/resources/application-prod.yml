@@ -47,3 +47,12 @@ logging:
     com.medibridge.lab_service_medibridge: DEBUG
     org.hibernate.SQL: DEBUG
     org.springframework.web.socket: DEBUG
+# Discovery
+eureka:
+  client:
+    service-url:
+      defaultZone: https://servermedibridgeprod-production.up.railway.app/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
