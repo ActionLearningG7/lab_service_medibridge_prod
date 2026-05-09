@@ -12,7 +12,7 @@ spring:
         idle-timeout: 600000
     jpa:
       hibernate:
-        ddl-auto: update
+        ddl-auto: ${DDL_AUTO:update}
       properties:
         hibernate:
           format_sql: true
@@ -22,11 +22,11 @@ spring:
   # Redis Configuration
   data:
     redis:
-      url: ${REDIS_URL:redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415}
+      url: ${REDIS_URL_DEV:redis://localhost:6379}
 
   # Kafka Configuration
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:shortline.proxy.rlwy.net:57987}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS_DEV:localhost:9092}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -44,7 +44,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${DDL_AUTO:update}
 
   devtools:
     restart:
@@ -52,15 +52,16 @@ spring:
 
 logging:
   level:
-    root: INFO
+    root: ${LOG_LEVEL:INFO}
     com.medibridge.lab_service_medibridge: DEBUG
     org.hibernate.SQL: DEBUG
     org.springframework.web.socket: DEBUG
+
 # Discovery
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_PROTOCOL:http}://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:

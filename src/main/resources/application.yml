@@ -3,18 +3,23 @@ spring:
     name: lab-service
   
   profiles:
-    active: dev
+    active: ${SPRING_PROFILE:dev}
 
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:medibridge_lab}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:Prakash@1}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   # Redis Configuration
   data:
     redis:
-      url: redis://default:GOwUPRpFGRVtZMSiEEWlTapCvefmpsFj@hopper.proxy.rlwy.net:11415
+      url: ${REDIS_URL_DEV:redis://localhost:6379}
 
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: update # CAUTION: validate in prod
+      ddl-auto: ${DDL_AUTO:update}
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -24,7 +29,7 @@ spring:
 
   # Kafka Configuration
   kafka:
-    bootstrap-servers: shortline.proxy.rlwy.net:57987
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS_DEV:localhost:9092}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -45,22 +50,35 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
+  server:
+    port: ${SERVER_PORT:8084}
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
 # Cloudinary
 cloudinary:
-  cloud-name: du1pyzthl
-  api-key: 451954261338871
-  api-secret: vL9wmoZn8Yid40FtSS1irqtT3N8
-  folder: medibridge/lab-reports
+  cloud-name: ${CLOUDINARY_CLOUD_NAME:du1pyzthl}
+
+  api-key: ${CLOUDINARY_API_KEY:451954261338871}
+  api-secret: ${CLOUDINARY_API_SECRET:vL9wmoZn8Yid40FtSS1irqtT3N8}
+  folder: ${CLOUDINARY_FOLDER:medibridge/lab-reports}
   secure: true
 
 # Security (JWT Resource Server)
 security:
   jwt:
-    secret-key: MediBridge2026!Pr0duct1on$ecretK3y#H0sp1talManag3m3ntSyst3m@Secur1ty
+    secret-key: ${JWT_SECRET:MediBridge2026!Dev$ecretK3y#Tes7Env@Secur1ty}
 
 # Server
 server:
-  port: 8085
+  port: ${SERVER_PORT:8085}
 
 
 
